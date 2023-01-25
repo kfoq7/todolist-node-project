@@ -1,31 +1,37 @@
 import { config } from 'dotenv'
 config({ path: './.env' })
 
-import express from 'express'
-import morgan from 'morgan'
-import { mongooseConnect } from './src/config/dbConnection.js'
+import Server from './src/Server.js'
 
-const PORT = process.env.PORT ?? 8000
+const server = new Server()
 
-const app = express()
+server.run()
 
-app.use(express.json())
-app.use(morgan('dev'))
+// import express from 'express'
+// import morgan from 'morgan'
+// import { mongooseConnect } from './src/config/dbConnection.js'
 
-app.get('/', (_req, res) => {
-  res.status(200).json({
-    routesAviables: {
-      user: '',
-    },
-  })
-})
+// const PORT = process.env.PORT ?? 8000
 
-app.get('*', (_req, res) => {
-  res.redirect('/')
-})
+// const app = express()
 
-mongooseConnect()
+// app.use(express.json())
+// app.use(morgan('dev'))
 
-app.listen(PORT, () => {
-  console.log(`Server listeing on port http://localhost:${PORT}`)
-})
+// app.get('/', (_req, res) => {
+//   res.status(200).json({
+//     routesAviables: {
+//       user: '',
+//     },
+//   })
+// })
+
+// app.get('*', (_req, res) => {
+//   res.redirect('/')
+// })
+
+// mongooseConnect()
+
+// app.listen(PORT, () => {
+//   console.log(`Server listeing on port http://localhost:${PORT}`)
+// })
