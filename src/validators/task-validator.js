@@ -6,11 +6,13 @@ export const validateTask = [
     .withMessage('The value must be a string')
     .bail()
     .notEmpty()
-    .withMessage('The title is required.'),
+    .withMessage('The title is required.')
+    .bail(),
   check('description')
     .isString()
     .withMessage('The value must be a string')
     .bail()
     .notEmpty()
-    .withMessage('A description is required'),
+    .withMessage('A description is required')
+    .bail(),
 ]
