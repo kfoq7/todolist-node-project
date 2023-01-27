@@ -6,9 +6,11 @@ Project practice node G5
 
 ## Requirements
 
-node - version 16.5.x: [click here](https://nodejs.org/en/)\
-pnpm - version 7.x: [click here](https://pnpm.io/installation)\
-mongodb - [click here](https://www.mongodb.com/)
+- node - version 16.5.x: [click here](https://nodejs.org/en/)\
+- pnpm - version 7.x: [click here](https://pnpm.io/installation)\
+- mongodb - [click here](https://www.mongodb.com/)
+- dotenv -- variables de entorno
+- npm i jsonwebtoken
 
 ## Run project
 
