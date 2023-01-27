@@ -1,5 +1,12 @@
 import { check } from 'express-validator'
 
+export const validateTaskId = [
+  check('taskId')
+    .isMongoId()
+    .withMessage('The param id must be a mongoId')
+    .bail(),
+]
+
 export const validateTask = [
   check('title')
     .isString()
@@ -14,5 +21,10 @@ export const validateTask = [
     .bail()
     .notEmpty()
     .withMessage('A description is required')
+    .bail(),
+  check('status')
+    .optional()
+    .isBoolean()
+    .withMessage('The status must be a boolean')
     .bail(),
 ]
