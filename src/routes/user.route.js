@@ -10,11 +10,8 @@ import { validate } from '../middlewares/validateFields.js'
 import { validateTask, validateUserId } from '../validators/index.js'
 
 const router = express.Router()
-router.get('/', (_req, res) => {
-  res.send('Users...')
-})
 
-router.get('/list', listUser);
+router.get('/list', listUser)
 
 router.post('/register', registerUser)
 

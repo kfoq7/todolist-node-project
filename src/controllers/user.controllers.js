@@ -1,3 +1,4 @@
+import { handleErrorResponse } from '../helpers/handleErrors.js'
 import { userModel, taskModel } from '../models/index.js'
 import bcrypt from "bcrypt";
 import { generateJWT } from "../helpers/generate-JWT.js";
@@ -87,10 +88,7 @@ export const createTaskUser = async (req, res) => {
       tasks,
     })
   } catch (error) {
-    console.log(error)
-    res.status(500).json({
-      message: 'Error Server response',
-    })
+    handleErrorResponse(res, 500, error)
   }
 }
 
@@ -108,10 +106,7 @@ export const listTaskUser = async (req, res) => {
       tasks,
     })
   } catch (error) {
-    console.log(error)
-    res.status(500).json({
-      message: 'Error Server response',
-    })
+    handleErrorResponse(res, 500, error)
   }
 }
 
