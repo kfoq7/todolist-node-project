@@ -12,11 +12,11 @@ export const validate = validations => {
     const results = validationResult(req)
 
     if (results.isEmpty()) {
-      return next()
+      return res.status(400).json({
+        errors: results.array(),
+      })
     }
 
-    res.status(400).json({
-      errors: results.array(),
-    })
+    next()
   }
 }

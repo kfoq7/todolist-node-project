@@ -1,19 +1,19 @@
 import express from 'express'
 import { changeStatusTask, updateTask } from '../controllers/task.controller.js'
-import { validate } from '../middlewares/validateFields.js'
+import { validateAuth, validate } from '../middlewares/index.js'
 import { validateTask, validateTaskId } from '../validators/index.js'
 
 const router = express.Router()
 
 router.put(
   '/:taskId',
-  validate([...validateTaskId, ...validateTask]),
+  [validateAuth, validate([...validateTaskId, ...validateTask])],
   updateTask
 )
 
 router.put(
   '/:taskId/change-status',
-  validate([...validateTaskId]),
+  [validateAuth, validate([...validateTaskId])],
   changeStatusTask
 )
 

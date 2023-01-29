@@ -6,10 +6,7 @@ export const updateTask = async (req, res) => {
 
   try {
     const task = await taskModel
-      .findByIdAndUpdate(taskId, req.body, {
-        new: true,
-        upsert: true,
-      })
+      .findByIdAndUpdate(taskId, req.body, { new: true })
       .lean()
 
     res.status(200).json({
@@ -23,12 +20,11 @@ export const updateTask = async (req, res) => {
 
 export const changeStatusTask = async (req, res) => {
   const { taskId } = req.params
+  const { status } = req.body
 
   try {
-    const status = req.body.status ? 'COMPLETED' : 'PENDING'
-
     const task = await taskModel
-      .findByIdAndUpdate(taskId, { status }, { new: true, upsert: true })
+      .findByIdAndUpdate(taskId, { status }, { new: true })
       .lean()
 
     res.status(200).json({

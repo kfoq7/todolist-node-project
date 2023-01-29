@@ -15,8 +15,8 @@ class Server {
     this.routes()
   }
 
-  dbConnection() {
-    mongooseConnect()
+  async dbConnection() {
+    await mongooseConnect()
   }
 
   middlewares() {
