@@ -4,20 +4,17 @@ import { userModel, taskModel } from '../models/index.js'
 import { generateJWT } from '../helpers/generate-JWT.js'
 
 export const registerUser = async (req, res) => {
+  const { password, ...userData } = req.body
+
   try {
-    // Crear una instancia de un registro
-    const newUser = new userModel(req.body)
-
-    // Encriptar pass
     const salt = bcrypt.genSaltSync(10)
-    const hash = bcrypt.hashSync(req.body.password, salt)
+    const hash = bcrypt.hashSync(password, salt)
 
-    newUser.password = hash
+    await userModel.create({
+      ...userData,
+      password: hash,
+    })
 
-    // Guardar en nuestra DB
-    await newUser.save()
-
-    // Responder si la creacion fue correcta
     res.status(201).json({
       message: 'Usuario creado',
     })
