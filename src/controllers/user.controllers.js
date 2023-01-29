@@ -31,14 +31,14 @@ export const loginUser = async (req, res) => {
     const user = await userModel.findOne({ email })
     if (!user)
       return res.status(400).json({
-        msg: 'Usuario no encontrado',
+        message: 'Usuario no encontrado',
       })
 
     // Verificar password
     const isMatch = bcrypt.compareSync(password, user.password)
     if (!isMatch)
       return res.status(400).json({
-        msg: 'Password incorrecto',
+        message: 'Password incorrecto',
       })
 
     // generar el token
@@ -48,7 +48,7 @@ export const loginUser = async (req, res) => {
     })
 
     res.status(200).json({
-      msg: 'Usuario login exitoso',
+      message: 'Usuario login exitoso',
       token,
     })
   } catch (error) {

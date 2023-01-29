@@ -1,5 +1,6 @@
 import express from 'express'
 import morgan from 'morgan'
+import cors from 'cors'
 import { mongooseConnect } from './config/dbConnection.js'
 import { routerApi } from './routes/index.js'
 
@@ -22,6 +23,7 @@ class Server {
   middlewares() {
     this.#app.use(express.json())
     this.#app.use(morgan('dev'))
+    this.#app.use(cors())
   }
 
   routes() {

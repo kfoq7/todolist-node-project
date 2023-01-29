@@ -11,7 +11,7 @@ export const validate = validations => {
 
     const results = validationResult(req)
 
-    if (results.isEmpty()) {
+    if (!results.isEmpty()) {
       return res.status(400).json({
         errors: results.array(),
       })
