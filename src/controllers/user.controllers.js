@@ -44,10 +44,10 @@ export const loginUser = async (req, res) => {
     // generar el token
     const token = await generateJWT({
       id: user._id,
-      name: `${user.username}`,
+      name: `${user.name}`,
     })
 
-    const { updatedAt, createdAt, password: asdf, ...userData } = user
+    const { updatedAt, createdAt, password: _, ...userData } = user
 
     res.status(200).json({
       message: 'Usuario login exitoso',
@@ -70,11 +70,11 @@ export const createTaskUser = async (req, res) => {
       .populate('tasks')
       .lean()
 
-    const { username, tasks } = user
+    const { name, tasks } = user
 
     res.status(200).json({
       message: 'Task added',
-      username,
+      name,
       tasks,
     })
   } catch (error) {
@@ -88,11 +88,11 @@ export const listTaskUser = async (req, res) => {
   try {
     const user = await userModel.findById(userId).populate('tasks').lean()
 
-    const { username, tasks } = user
+    const { name, tasks } = user
 
     res.status(200).json({
       message: 'Task list user',
-      username,
+      name,
       tasks,
     })
   } catch (error) {
