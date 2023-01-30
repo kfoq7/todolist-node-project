@@ -28,7 +28,7 @@ export const loginUser = async (req, res) => {
 
   try {
     // Verificar si existe el usuario por email
-    const user = await userModel.findOne({ email })
+    const user = await userModel.findOne({ email }).lean()
     if (!user)
       return res.status(400).json({
         message: 'Usuario no encontrado',
@@ -47,9 +47,12 @@ export const loginUser = async (req, res) => {
       name: `${user.username}`,
     })
 
+    const { updatedAt, createdAt, password: asdf, ...userData } = user
+
     res.status(200).json({
       message: 'Usuario login exitoso',
       token,
+      user: userData,
     })
   } catch (error) {
     handleErrorResponse(res, 500, error)

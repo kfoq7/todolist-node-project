@@ -9,7 +9,7 @@ export const validateUserId = [
 ]
 
 export const validationUser = [
-  check('name').notEmpty().withMessage('The name is required'),
+  check('username').notEmpty().withMessage('The name is required'),
   check('email').isEmail().withMessage('The email is invalid'),
 ]
 
