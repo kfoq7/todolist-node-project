@@ -1,5 +1,9 @@
 import express from 'express'
-import { changeStatusTask, updateTask } from '../controllers/task.controller.js'
+import {
+  changeStatusTask,
+  deleteTask,
+  updateTask,
+} from '../controllers/task.controller.js'
 import { validateAuth, validate } from '../middlewares/index.js'
 import { validateTask, validateTaskId } from '../validators/index.js'
 
@@ -12,9 +16,11 @@ router.put(
 )
 
 router.put(
-  '/:taskId/change-status',
+  '/change-status/:userId/:taskId',
   [validateAuth, validate([...validateTaskId])],
   changeStatusTask
 )
+
+router.delete('/:taskId', [validateAuth], deleteTask)
 
 export default router

@@ -1,4 +1,5 @@
 import express from 'express'
+import { deleteTask } from '../controllers/task.controller.js'
 import {
   createTaskUser,
   listTaskUser,
@@ -38,5 +39,7 @@ router.post(
   [validateAuth, validate([...validateUserId, ...validateTask])],
   createTaskUser
 )
+
+router.delete('/delete-task/:userId/:taskId', [validateAuth], deleteTask)
 
 export default router
